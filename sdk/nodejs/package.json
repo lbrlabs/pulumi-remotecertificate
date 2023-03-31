@@ -1,6 +1,16 @@
 {
     "name": "@pulumi/remotecertificate",
     "version": "${VERSION}",
+    "keywords": [
+        "pulumi",
+        "provider",
+        "remote",
+        "certificate",
+        "thumbprint"
+    ],
+    "homepage": "https://lbrlabs.com",
+    "repository": "https://github.com/lbrlabs/pulumi-remotecertificate/",
+    "license": "Apache-2.0",
     "scripts": {
         "build": "tsc",
         "install": "node scripts/install-pulumi-plugin.js resource remotecertificate ${VERSION}"
@@ -14,6 +24,7 @@
     },
     "pulumi": {
         "resource": true,
-        "name": "remotecertificate"
+        "name": "remotecertificate",
+        "server": "github://api.github.com/lbrlabs"
     }
 }

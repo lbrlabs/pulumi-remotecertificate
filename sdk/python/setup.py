@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'remotecertificate', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'remotecertificate', PLUGIN_VERSION, '--server', 'github://api.github.com/lbrlabs'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -39,11 +39,18 @@ def readme():
 
 setup(name='pulumi_remotecertificate',
       version=VERSION,
+      description="A Pulumi provider for retrieving the thumbprint of a remote certificate",
       long_description=readme(),
       long_description_content_type='text/markdown',
       cmdclass={
           'install': InstallPluginCommand,
       },
+      keywords='pulumi provider remote certificate thumbprint',
+      url='https://lbrlabs.com',
+      project_urls={
+          'Repository': 'https://github.com/lbrlabs/pulumi-remotecertificate/'
+      },
+      license='Apache-2.0',
       packages=find_packages(),
       package_data={
           'pulumi_remotecertificate': [

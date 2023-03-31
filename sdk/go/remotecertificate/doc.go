@@ -1,2 +1,2 @@
-// Package remotecertificate exports types, functions, subpackages for provisioning remotecertificate resources.
+// A Pulumi provider for retrieving the thumbprint of a remote certificate
 package remotecertificate

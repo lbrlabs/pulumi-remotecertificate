@@ -32,6 +32,7 @@ func NewCertThumbPrint(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CertThumbPrint
 	err := ctx.RegisterResource("remotecertificate:index:CertThumbPrint", name, args, &resource, opts...)
 	if err != nil {
