@@ -30,6 +30,30 @@ func main() {
 				Publisher:         "lbrlabs",
 				Repository:        "https://github.com/lbrlabs/pulumi-remotecertificate/",
 				Homepage:          "https://lbrlabs.com",
+				LanguageMap: 		map[string]interface{}{
+					"nodejs": map[string]interface{}{
+						"packageName": "@lbrlabs/pulumi-remotecertificate",
+						"dependencies": map[string]interface{}{
+							"@pulumi/pulumi": "^3.0.0",
+						},
+					},
+					"python": map[string]interface{}{
+						"packageName": "lbrlabs_pulumiservice",
+						"requires":map[string]interface{}{
+							"pulumi": ">=3.0.0,<4.0.0",
+						},
+					},
+					"csharp": map[string]interface{}{
+						"rootNamespace": "Lbrlabs.PulumiPackage",
+						"packageReferences": map[string]interface{}{
+						  "Pulumi": "3.*",
+						},
+					},
+					"go": map[string]interface{}{
+						"generateResourceContainerTypes": true,
+						"importBasePath": "github.com/lbrlabs/pulumi-remotecertificate/sdk/go/remotecertficate",
+					},
+				},
 			},
 		}))
 }

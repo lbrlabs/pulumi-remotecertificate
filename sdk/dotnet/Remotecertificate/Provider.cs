@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Remotecertificate
+namespace Lbrlabs.PulumiPackage.Remotecertificate
 {
     [RemotecertificateResourceType("pulumi:providers:remotecertificate")]
     public partial class Provider : global::Pulumi.ProviderResource

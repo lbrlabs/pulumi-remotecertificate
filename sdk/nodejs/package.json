@@ -1,5 +1,5 @@
 {
-    "name": "@pulumi/remotecertificate",
+    "name": "@lbrlabs/pulumi-remotecertificate",
     "version": "${VERSION}",
     "keywords": [
         "pulumi",
@@ -16,7 +16,7 @@
         "install": "node scripts/install-pulumi-plugin.js resource remotecertificate ${VERSION}"
     },
     "dependencies": {
-        "@pulumi/pulumi": "^3.42.0"
+        "@pulumi/pulumi": "^3.0.0"
     },
     "devDependencies": {
         "@types/node": "^14",

@@ -13,7 +13,7 @@ _utilities.register(
  {
   "pkg": "remotecertificate",
   "mod": "index",
-  "fqn": "pulumi_remotecertificate",
+  "fqn": "lbrlabs_pulumiservice",
   "classes": {
    "remotecertificate:index:CertThumbPrint": "CertThumbPrint"
   }
@@ -25,7 +25,7 @@ _utilities.register(
  {
   "pkg": "remotecertificate",
   "token": "pulumi:providers:remotecertificate",
-  "fqn": "pulumi_remotecertificate",
+  "fqn": "lbrlabs_pulumiservice",
   "class": "Provider"
  }
 ]

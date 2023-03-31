@@ -1,0 +1,3 @@
+name: remote_certificate_ts
+runtime: nodejs
+description: A minimal TypeScript Pulumi program
