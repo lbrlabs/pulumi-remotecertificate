@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='lbrlabs_pulumiservice',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi provider for retrieving the thumbprint of a remote certificate",
       long_description=readme(),
