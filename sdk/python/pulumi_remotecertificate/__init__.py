@@ -5,17 +5,17 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .cert_thumb_print import *
 from .provider import *
-from .random import *
 _utilities.register(
     resource_modules="""
 [
  {
-  "pkg": "xyz",
+  "pkg": "remotecertificate",
   "mod": "index",
-  "fqn": "pulumi_xyz",
+  "fqn": "pulumi_remotecertificate",
   "classes": {
-   "xyz:index:Random": "Random"
+   "remotecertificate:index:CertThumbPrint": "CertThumbPrint"
   }
  }
 ]
@@ -23,9 +23,9 @@ _utilities.register(
     resource_packages="""
 [
  {
-  "pkg": "xyz",
-  "token": "pulumi:providers:xyz",
-  "fqn": "pulumi_xyz",
+  "pkg": "remotecertificate",
+  "token": "pulumi:providers:remotecertificate",
+  "fqn": "pulumi_remotecertificate",
   "class": "Provider"
  }
 ]

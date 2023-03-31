@@ -1,37 +1,25 @@
-// Copyright 2016-2022, Pulumi Corporation.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package main
 
 import (
-	"math/rand"
-	"time"
-
+	"bytes"
+	"crypto/sha1"
+	"crypto/tls"
+	"fmt"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
+	"strings"
 )
 
 // Version is initialized by the Go linker to contain the semver of this build.
 var Version string
 
 func main() {
-	p.RunProvider("xyz", Version,
+	p.RunProvider("remotecertificate", Version,
 		// We tell the provider what resources it needs to support.
 		// In this case, a single custom resource.
 		infer.Provider(infer.Options{
 			Resources: []infer.InferredResource{
-				infer.Resource[Random, RandomArgs, RandomState](),
+				infer.Resource[CertThumbPrint, CertThumbPrintArgs, CertThumbPrintState](),
 			},
 		}))
 }
@@ -46,41 +34,60 @@ func main() {
 // - Delete: Custom logic when the resource is deleted.
 // - Annotate: Describe fields and set defaults for a resource.
 // - WireDependencies: Control how outputs and secrets flows through values.
-type Random struct{}
+type CertThumbPrint struct{}
 
 // Each resource has in input struct, defining what arguments it accepts.
-type RandomArgs struct {
+type CertThumbPrintArgs struct {
 	// Fields projected into Pulumi must be public and hava a `pulumi:"..."` tag.
 	// The pulumi tag doesn't need to match the field name, but its generally a
 	// good idea.
-	Length int `pulumi:"length"`
+	Server string `pulumi:"server"`
+
+	Port int32 `pulumi:"port"`
 }
 
 // Each resource has a state, describing the fields that exist on the created resource.
-type RandomState struct {
+type CertThumbPrintState struct {
 	// It is generally a good idea to embed args in outputs, but it isn't strictly necessary.
-	RandomArgs
+	CertThumbPrintArgs
 	// Here we define a required output called result.
-	Result string `pulumi:"result"`
+	Hash string `pulumi:"hash"`
 }
 
 // All resources must implement Create at a minumum.
-func (Random) Create(ctx p.Context, name string, input RandomArgs, preview bool) (string, RandomState, error) {
-	state := RandomState{RandomArgs: input}
+func (CertThumbPrint) Create(ctx p.Context, name string, input CertThumbPrintArgs, preview bool) (string, CertThumbPrintState, error) {
+	state := CertThumbPrintState{CertThumbPrintArgs: input}
 	if preview {
 		return name, state, nil
 	}
-	state.Result = makeRandom(input.Length)
+
+	value, err := retrieveCertThumbPrint(input.Server, input.Port)
+	if err != nil {
+		return "", CertThumbPrintState{}, err
+	}
+	state.Hash = value
 	return name, state, nil
 }
 
-func makeRandom(length int) string {
-	seededRand := rand.New(rand.NewSource(time.Now().UnixNano()))
-	charset := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
+func retrieveCertThumbPrint(url string, port int32) (string, error) {
 
-	result := make([]rune, length)
-	for i := range result {
-		result[i] = charset[seededRand.Intn(len(charset))]
+	conn, err := tls.Dial("tcp", fmt.Sprintf("%s:%d", url, port), &tls.Config{})
+	if err != nil {
+		return "", fmt.Errorf("failed to dial %s:%d: %v", url, port, err)
 	}
-	return string(result)
+
+	certs := conn.ConnectionState().PeerCertificates
+	thumbPrintCert := certs[len(certs)-1]
+
+	fingerprint := sha1.Sum(thumbPrintCert.Raw)
+
+	var buf bytes.Buffer
+	for i, f := range fingerprint {
+		if i > 0 {
+			fmt.Fprintf(&buf, "")
+		}
+		fmt.Fprintf(&buf, "%02X", f)
+	}
+	return strings.ToLower(buf.String()), nil
+
 }

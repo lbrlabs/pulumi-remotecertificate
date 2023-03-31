@@ -1,0 +1,11 @@
+name: certthumbprint_yaml
+runtime: yaml
+description: A minimal Pulumi YAML program
+resources:
+  pulumi_com:
+    type: remotecertificate:CertThumbPrint
+    properties:
+      server: api.pulumi.com
+      port: 443
+outputs:
+  thumbprint: ${pulumi_com.hash}
