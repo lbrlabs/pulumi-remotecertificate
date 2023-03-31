@@ -11,8 +11,6 @@ env:
   PULUMI_TEST_OWNER: "lbrlabs"
   PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: "__token__"
-  GRAFANA_AUTH: ${{ secrets.GRAFANA_AUTH }}
-  GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
   TRAVIS_OS_NAME: linux
 jobs:
   command-dispatch-for-testing:

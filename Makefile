@@ -30,20 +30,20 @@ provider_debug::
 test_provider::
 	cd provider/pkg && go test -short -v -count=1 -cover -timeout 2h -parallel ${TESTPARALLELISM} ./...
 
-dotnet_sdk:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
-dotnet_sdk::
+build_dotnet:: DOTNET_VERSION := $(shell pulumictl get version --language dotnet)
+build_dotnet::
 	rm -rf sdk/dotnet
 	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language dotnet
 	cd ${PACKDIR}/dotnet/&& \
 		echo "${DOTNET_VERSION}" >version.txt && \
 		dotnet build /p:Version=${DOTNET_VERSION}
 
-go_sdk:: $(WORKING_DIR)/bin/$(PROVIDER)
+build_go:: $(WORKING_DIR)/bin/$(PROVIDER)
 	rm -rf sdk/go
 	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language go
 
-nodejs_sdk:: VERSION := $(shell pulumictl get version --language javascript)
-nodejs_sdk::
+build_nodejs:: VERSION := $(shell pulumictl get version --language javascript)
+build_nodejs::
 	rm -rf sdk/nodejs
 	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language nodejs
 	cd ${PACKDIR}/nodejs/ && \
@@ -54,8 +54,8 @@ nodejs_sdk::
 		sed -i.bak 's/$${VERSION}/$(VERSION)/g' bin/package.json && \
 		rm ./bin/package.json.bak
 
-python_sdk:: PYPI_VERSION := $(shell pulumictl get version --language python)
-python_sdk::
+build_python:: PYPI_VERSION := $(shell pulumictl get version --language python)
+build_python::
 	rm -rf sdk/python
 	pulumi package gen-sdk $(WORKING_DIR)/bin/$(PROVIDER) --language python
 	cp README.md ${PACKDIR}/python/
@@ -67,7 +67,7 @@ python_sdk::
 		cd ./bin && python3 setup.py build sdist
 
 .PHONY: build
-build:: provider dotnet_sdk go_sdk nodejs_sdk python_sdk
+build:: provider build_dotnet build_go build_nodejs build_python
 
 # Required for the codegen action that runs in pulumi/pulumi
 only_build:: build
