@@ -9,13 +9,12 @@ import (
 	"github.com/pulumi/pulumi-go-provider/infer"
 	"github.com/pulumi/pulumi-go-provider/middleware/schema"
 	"strings"
+	"github.com/lbrlabs/pulumi-remotecertificate/provider/pkg/version"
 )
 
-// Version is initialized by the Go linker to contain the semver of this build.
-var Version string
 
 func main() {
-	p.RunProvider("remotecertificate", Version,
+	p.RunProvider("remotecertificate", version.Version,
 		// We tell the provider what resources it needs to support.
 		// In this case, a single custom resource.
 		infer.Provider(infer.Options{
