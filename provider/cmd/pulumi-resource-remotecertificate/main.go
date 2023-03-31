@@ -7,6 +7,7 @@ import (
 	"fmt"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
+	"github.com/pulumi/pulumi-go-provider/middleware/schema"
 	"strings"
 )
 
@@ -20,6 +21,15 @@ func main() {
 		infer.Provider(infer.Options{
 			Resources: []infer.InferredResource{
 				infer.Resource[CertThumbPrint, CertThumbPrintArgs, CertThumbPrintState](),
+			},
+			Metadata: schema.Metadata{
+				PluginDownloadURL: "github://api.github.com/lbrlabs",
+				Description:       "A Pulumi provider for retrieving the thumbprint of a remote certificate",
+				Keywords:          []string{"pulumi", "provider", "remote", "certificate", "thumbprint"},
+				License:           "Apache-2.0",
+				Publisher:         "lbrlabs",
+				Repository:        "https://github.com/lbrlabs/pulumi-remotecertificate/",
+				Homepage:          "https://lbrlabs.com",
 			},
 		}))
 }
