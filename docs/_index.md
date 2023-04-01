@@ -29,11 +29,12 @@ export const thumbprint = example.hash;
 
 ```python
 import lbrlabs_pulumi_remotecertificate as remotecert
+import pulumi
 
 example = remotecert.CertThumbPrint(
-	"example",
-	server="api.pulumi.com",
-	port=443
+    "example",
+    server="api.pulumi.com",
+    port=443,
 )
 
 pulumi.export("thumbprint", example.hash)

@@ -50,7 +50,7 @@ func main() {
 					},
 					"go": map[string]interface{}{
 						"generateResourceContainerTypes": true,
-						"importBasePath":                 "github.com/lbrlabs/pulumi-remotecertificate/sdk/go/remotecertficate",
+						"importBasePath":                 "github.com/lbrlabs/pulumi-remotecertificate/sdk/go/remotecertificate",
 					},
 				},
 			},
