@@ -25,7 +25,7 @@ jobs:
         issue-type: pull-request
         permission: write
         reaction-token: ${{ secrets.GITHUB_TOKEN }}
-        repository: lbrlabs/pulumi-grafana
+        repository: lbrlabs/pulumi-remotecertificate
         token: ${{ secrets.PULUMI_BOT_TOKEN }}
     strategy: {}
 "on":
