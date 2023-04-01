@@ -37,7 +37,7 @@ def readme():
         return "remotecertificate Pulumi Package - Development Version"
 
 
-setup(name='lbrlabs_pulumiservice',
+setup(name='lbrlabs_pulumi_remotecertificate',
       python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi provider for retrieving the thumbprint of a remote certificate",
@@ -54,7 +54,7 @@ setup(name='lbrlabs_pulumiservice',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'lbrlabs_pulumiservice': [
+          'lbrlabs_pulumi_remotecertificate': [
               'py.typed',
               'pulumi-plugin.json',
           ]

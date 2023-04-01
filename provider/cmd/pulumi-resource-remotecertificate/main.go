@@ -5,13 +5,13 @@ import (
 	"crypto/sha1"
 	"crypto/tls"
 	"fmt"
+	"strings"
+
+	"github.com/lbrlabs/pulumi-remotecertificate/provider/pkg/version"
 	p "github.com/pulumi/pulumi-go-provider"
 	"github.com/pulumi/pulumi-go-provider/infer"
 	"github.com/pulumi/pulumi-go-provider/middleware/schema"
-	"strings"
-	"github.com/lbrlabs/pulumi-remotecertificate/provider/pkg/version"
 )
-
 
 func main() {
 	p.RunProvider("remotecertificate", version.Version,
@@ -29,7 +29,7 @@ func main() {
 				Publisher:         "lbrlabs",
 				Repository:        "https://github.com/lbrlabs/pulumi-remotecertificate/",
 				Homepage:          "https://lbrlabs.com",
-				LanguageMap: 		map[string]interface{}{
+				LanguageMap: map[string]interface{}{
 					"nodejs": map[string]interface{}{
 						"packageName": "@lbrlabs/pulumi-remotecertificate",
 						"dependencies": map[string]interface{}{
@@ -37,20 +37,20 @@ func main() {
 						},
 					},
 					"python": map[string]interface{}{
-						"packageName": "lbrlabs_pulumiservice",
-						"requires":map[string]interface{}{
+						"packageName": "lbrlabs_pulumi_remotecertificate",
+						"requires": map[string]interface{}{
 							"pulumi": ">=3.0.0,<4.0.0",
 						},
 					},
 					"csharp": map[string]interface{}{
 						"rootNamespace": "Lbrlabs.PulumiPackage",
 						"packageReferences": map[string]interface{}{
-						  "Pulumi": "3.*",
+							"Pulumi": "3.*",
 						},
 					},
 					"go": map[string]interface{}{
 						"generateResourceContainerTypes": true,
-						"importBasePath": "github.com/lbrlabs/pulumi-remotecertificate/sdk/go/remotecertficate",
+						"importBasePath":                 "github.com/lbrlabs/pulumi-remotecertificate/sdk/go/remotecertficate",
 					},
 				},
 			},
