@@ -33,7 +33,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -111,14 +111,14 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
       uses: pulumi/action-install-pulumi-cli@v2
     - if: github.event_name == 'pull_request'
       name: Install Schema Tools
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: mikhailshilkov/schema-tools
     - name: Build provider binaries
@@ -170,7 +170,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -213,7 +213,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
@@ -288,7 +288,7 @@ jobs:
       with:
         go-version: ${{matrix.goversion}}
     - name: Install pulumictl
-      uses: jaxxstorm/action-install-gh-release@v1.9.0
+      uses: jaxxstorm/action-install-gh-release@v1.10.0
       with:
         repo: pulumi/pulumictl
     - name: Install Pulumi CLI
