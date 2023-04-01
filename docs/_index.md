@@ -73,20 +73,24 @@ func main() {
 {{% choosable language csharp %}}
 
 ```csharp
+using System.Collections.Generic;
 using Pulumi;
-using lbrlabs.PulumiPackage.RemoteCertificate;
+using Lbrlabs.PulumiPackage.Remotecertificate;
 
-class ThumbPrint : Stack
+return await Deployment.RunAsync(() =>
+
 {
-    public ThumbPrint()
+    var example = new CertThumbPrint("example", new CertThumbPrintArgs
     {
-        var example = new CertThumbPrint("example", new CertThumbPrintArgs{
-			Server = "api.pulumi.com",
-			Port = 443
-		});
+        Server = "api.pulumi.com",
+        Port = 443,
+    });
 
-    }
-}
+    return new Dictionary<string, object?>
+      {
+         { "thumbprint", example.Hash },
+      };
+});
 ```
 
 {{% /choosable %}}

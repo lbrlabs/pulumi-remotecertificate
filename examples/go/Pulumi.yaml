@@ -1,0 +1,3 @@
+name: remotecert_go
+runtime: go
+description: A minimal Go Pulumi program
