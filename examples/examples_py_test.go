@@ -15,7 +15,7 @@ import (
 func TestAccWebserver(t *testing.T) {
 	test := getPythonBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "python/server"),
+			Dir: path.Join(getCwd(t), "python"),
 		})
 
 	integration.ProgramTest(t, &test)
