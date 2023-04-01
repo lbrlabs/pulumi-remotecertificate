@@ -1,25 +1,26 @@
 
-# Scaleway Resource Provider
+# Remote Certificate Resource Provider
 
-The Scaleway resource provider for Pulumi lets you creating resources in [Scaleway](https://www.scaleway.com). To use
-this package, please [install the Pulumi CLI first](https://pulumi.com/).
+The Remote Certificate provider for Pulumi can be used to create a resources that contains the details of a remote certificate from any website.
+
+This is especially useful when working with OIDC providers, which require a certificate thumbprint which can often require multiple manual steps to calculate.
 
 ## Installing
 
-This package is available in many languages in the standard packaging formats.
+This package is available in many languages in standard packaging formats.
 
 ### Node.js (Java/TypeScript)
 
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```
-$ npm install @lbrlabs/pulumi-scaleway
+$ npm install @lbrlabs/pulumi-remotecertificate
 ```
 
 or `yarn`:
 
 ```
-$ yarn add @lbrlabs/pulumi-scaleway
+$ yarn add @lbrlabs/pulumi-remotecertificate
 ```
 
 ### Python
@@ -27,7 +28,7 @@ $ yarn add @lbrlabs/pulumi-scaleway
 To use from Python, install using `pip`:
 
 ```
-$ pip install lbrlabs-scaleway
+$ pip install lbrlabs-pulumi-remotecertificate
 ```
 
 ### Go
@@ -35,7 +36,7 @@ $ pip install lbrlabs-scaleway
 To use from Go, use `go get` to grab the latest version of the library
 
 ```
-$ go get github.com/lbrlabs/pulumi-scaleway/sdk/go/...
+$ go get github.com/lbrlabs/pulumi-remotecertificate/sdk/go/...
 ```
 
 ### .NET
@@ -44,11 +45,11 @@ To use from Dotnet, use `dotnet add package` to install into your project. You m
 
 
 ```
-$ dotnet add package lbrlabs.PulumiPackage.Scaleway
+$ dotnet add package lbrlabs.PulumiPackage.Remotecertificate
 ```
 
 ## Reference
 
 See the Pulumi registry for API docs:
 
-https://www.pulumi.com/registry/packages/scaleway/api-docs/
+https://www.pulumi.com/registry/packages/remotecertificate/api-docs/
