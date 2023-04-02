@@ -147,7 +147,7 @@ jobs:
       uses: jaxxstorm/action-install-gh-release@v1.9.0
       with:
         repo: mikhailshilkov/schema-tools
-    - name: Build tfgen & provider binaries
+    - name: Build provider binaries
       run: make provider
     # - if: github.event_name == 'pull_request'
     #   name: Check Schema is Valid
@@ -165,9 +165,7 @@ jobs:
 
     #       ${{ env.SCHEMA_CHANGES }}
     - name: Tar provider binaries
-      run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace
-        }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER
-        }}
+      run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace}}/bin/ pulumi-resource-${{ env.PROVIDER }}
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
