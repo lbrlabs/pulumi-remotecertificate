@@ -29,6 +29,7 @@ func main() {
 				Publisher:         "lbrlabs",
 				Repository:        "https://github.com/lbrlabs/pulumi-remotecertificate/",
 				Homepage:          "https://lbrlabs.com",
+				LogoURL: 		   "https://raw.githubusercontent.com/lbrlabs/pulumi-remotecertificate/master/assets/logo.png",
 				LanguageMap: map[string]interface{}{
 					"nodejs": map[string]interface{}{
 						"packageName": "@lbrlabs/pulumi-remotecertificate",
